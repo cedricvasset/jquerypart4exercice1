@@ -1,0 +1,62 @@
+body{
+  width: 100%;
+}
+#form{
+  display: none;
+}
+li{
+  width: 75%;
+  list-style: none;
+  float: left;
+  text-align: left;
+}
+.computer{
+  width: 25%;
+  height: 200px;
+  border: solid 2px;
+  border-radius: 15px;
+  background-color: #02e759;
+}
+div.list,.computer{
+  float: left;
+}
+li{
+  width: 25%;
+}
+button{
+border: solid 5px #02e759;
+border-radius: 15px;
+font-size: 50px ;
+color: #02e759;
+background-color: #071d09;
+}
+.shifumi{
+padding-top: 20%;
+  text-align: center;
+}
+
+.resultat{
+  width: 100%;
+  float: left;
+}
+.resultat,p{
+
+  font-size: 130%;
+  color: #02e759;
+  padding-top: 2%;
+  text-align: center;
+}
+ input{
+  width: 20%;
+  background-color:#071d09;
+  color: #02e759;
+  font-size: 120%;
+}
+.resultat{
+  width: 100%;
+}
+.res{
+
+  width: 25%;
+  float: left;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css">
+  <script src="jquery-3.2.1.js"></script>
+  <title>exercice1part4 JQ</title>
+</head>
+<body>
+  <div class="">
+    <p>Vous allez devoir choisir un de ces trois éléments,cliquez sur SHIFUMI pour commencer</p>
+  </div>
+  <div class="list">
+    <li><input type="radio" name="idem" value="pierre" id="pierre" /><label for="pierre">pierre</label><img src="Wooden_Card-_Rock.png" alt=""> </li>
+    <li><input type="radio" name="idem" value="feuille" id="feuille" /><label for="feuille">feuille</label><img src="Wooden_Card-_Paper.png" alt=""> </li>
+    <li><input type="radio" name="idem" value="ciseaux" id="ciseaux" /><label for="ciseaux">ciseaux</label><img src="Wooden_Card-_Scissors.png" alt=""> </li>
+  </div>
+  <div class="computer">
+    <img id= "imagecomputer" class="compchoice" src="Sans titre.xcf" alt="">
+  </div>
+  <div class="shifumi">
+    <button id="shifumi" type="button" name="button">SHIFUMI</button>
+  </div>
+  <div class="resultat">
+    <div class="res">
+      <p>victoires</p>
+      <input id="winner" type="text" name="" value="" />
+    </div>
+    <div class="res">
+      <p>Egalités</p>
+      <input id="equal" type="text" name="" value="" />
+    </div>
+    <div class="res">
+      <p>Défaites</p>
+      <input id="looser" type="text" name="" value="" />
+    </div>
+    <div class="res">
+      <p>% de Victoires</p>
+      <input id="percent" type="text" name="" value="" />
+    </div>
+  </div>
+  <script>
+  $(function(){
+    // déclaration des variables compteur au point initial.
+    //penser a bien les déclarer en premier car sinon le compteur ne s incrémentera qu une seule fois.
+    var winner = 0;
+    var equal = 0;
+    var looser = 0;
+    $('#shifumi').click(function(){
+      //déclarartion de la liste utilisée par l ordinateur
+      var list = ["pierre", "feuille", "ciseaux"];
+      //déclaration de la variable pour choisir aléatoirement entre les 3 éléments de la liste
+      var randomnum = (Math.floor(Math.random()*3));
+      //déclaration de la variable qui récupere la valeur de l input validé par l utilisateur
+      var userchoice = $('input:checked').val();
+      //on demande a l ordi de repondre une string
+      var computer = "";
+      //ajout des conditions transformant le chiffre aléatoire donné par la variable randomnum en string
+      if (randomnum == 0) {
+        computer = "pierre";
+      }else if (randomnum == 1) {
+        computer = "feuille";
+      }else {
+        computer = "ciseaux";
+      };
+      //ajout des conditions du jeu pour les victoires,défaites et égalités
+      if (computer == userchoice){
+        alert('vous avez choisi '+ userchoice + ' j\'ai choisi ' + computer + ' nous sommes à EGALITE');
+        //incrémentation lors d une egalité
+        equal++;
+        //envoi de la valeur dans l input id=equal
+        $('#equal').val(equal);
+        //variable calculant le pourcentage de victoire selon le nbr de coups joué.arrondi a 2 chiffre apres la virgule.
+        var pourcentage = Math.round(((winner/(winner+looser+equal))*100)*100)/100;
+        //envoi dans l input id=percent du resultat
+        $('#percent').val(pourcentage);
+      }else if((computer =='pierre' && userchoice =='ciseaux')||(computer == 'feuille' && userchoice == 'pierre')||(computer == 'ciseaux' && userchoice == 'feuille')){
+        alert('j\'ai choisi ' + computer + ' vous avez choisi ' + userchoice + ' vous avez PERDU!');
+        looser++;
+        $('#looser').val(looser);
+        var pourcentage =Math.round(((winner/(winner+looser+equal))*100)*100)/100;
+        $('#percent').val(pourcentage);
+      }else{
+        alert('j\'ai choisi ' + computer + ' vous avez choisi ' + userchoice + ' vous avez GAGNE!');
+        winner++;
+        $('#winner').val(winner);
+        var pourcentage = Math.round(((winner/(winner+looser+equal))*100)*100)/100;
+        $('#percent').val(pourcentage);
+      };
+    });
+  })
+  </script>
+</body>
+</html>
